@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Popular() {
+  const [popular, setPopular] = useState([]);
+
   useEffect(() => {
     getPopular();
   }, []);
@@ -10,10 +12,22 @@ function Popular() {
       `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=40`
     );
     const data = await api.json();
+    setPopular(data.recipes);
     console.log(data);
   };
 
-  return <div>Popular</div>;
+  return (
+    <div>
+      {popular.map((recipe) => (
+        <p>{recipe.title}</p>
+      ))}
+    </div>
+  );
+
+  //2V -> map
+  // {popular.map((recipe) => {
+  //   return <p>{recipe.title}</p>;
+  // })}
 }
 
 export default Popular;
