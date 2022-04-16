@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Splide, SplideSlide } from "@splidejs/splide";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/splide/dist/css/splide.min.css";
 
 function Popular() {
   const [popular, setPopular] = useState([]);
@@ -21,15 +22,24 @@ function Popular() {
   return (
     <div>
       <Wrapper>
-        <h3 style={{ paddingBottom: "10rem" }}>Popular Picks</h3>
-        {popular.map((recipe) => {
-          return (
-            <Card>
-              <p>{recipe.title}</p>
-              <img src={recipe.image} alt={recipe.title} />
-            </Card>
-          );
-        })}
+        <h3>Popular Picks</h3>
+
+        <Splide
+          options={{
+            perPage: 3,
+          }}
+        >
+          {popular.map((recipe) => {
+            return (
+              <SplideSlide>
+                <Card>
+                  <p>{recipe.title}</p>
+                  <img src={recipe.image} alt={recipe.title} />
+                </Card>
+              </SplideSlide>
+            );
+          })}
+        </Splide>
       </Wrapper>
     </div>
   );
@@ -76,6 +86,10 @@ return <p>{recipe.title}</p>;
   */
 }
 
+const Wrapper = styled.div`
+  margin: 4rem 0rem;
+`;
+
 const Card = styled.div`
   min-height: 25rem;
   border-radius: 2rem;
@@ -84,10 +98,6 @@ const Card = styled.div`
   img {
     border-radius: 2rem;
   }
-`;
-
-const Wrapper = styled.div`
-  margin: 4rem 0rem;
 `;
 
 export default Popular;
