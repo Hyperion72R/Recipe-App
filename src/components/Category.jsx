@@ -6,25 +6,25 @@ import { NavLink } from "react-router-dom";
 function Category() {
   return (
     <List>
-      <div>
+      <NavLink to={"/cousine/Italian"}>
         <FaPizzaSlice />
         <h4>Italian</h4>
-      </div>
+      </NavLink>
 
-      <div>
+      <NavLink to={"/cousine/American"}>
         <FaHamburger />
         <h4>American</h4>
-      </div>
+      </NavLink>
 
-      <div>
+      <NavLink to={"/cousine/Thai"}>
         <GiNoodles />
         <h4>Thai</h4>
-      </div>
+      </NavLink>
 
-      <div>
+      <NavLink to={"/cousine/Japanese"}>
         <GiChopsticks />
         <h4>Japanese</h4>
-      </div>
+      </NavLink>
     </List>
   );
 }
@@ -36,29 +36,3 @@ const List = styled.div`
 `;
 
 export default Category;
-
-// function Category() {
-//   return (
-//     <List>
-//       <NavLink to={"/cusine/Italian"}>
-//         <FaPizzaSlice />
-//         <h4>Italian</h4>
-//       </NavLink>
-
-//       <NavLink>
-//         <FaHamburger to={"/cusine/American"} />
-//         <h4>American</h4>
-//       </NavLink>
-
-//       <NavLink>
-//         <GiNoodles to={"/cusine/Thai"} />
-//         <h4>Thai</h4>
-//       </NavLink>
-
-//       <NavLink>
-//         <GiChopsticks to={"/cusine/Japanese"} />
-//         <h4>Japanese</h4>
-//       </NavLink>
-//     </List>
-//   );
-// }
