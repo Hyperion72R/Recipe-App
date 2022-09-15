@@ -14,6 +14,7 @@ function Cousine() {
 
     const recipes = await data.json();
     setCuisine(recipes.results);
+    console.log(recipes);
   };
 
   useEffect(() => {
@@ -24,5 +25,18 @@ function Cousine() {
 
   return <div></div>;
 }
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-grap: 3rem;
+`;
+
+const Card = styled.div`
+  img{
+    width: 100%
+    border-raduis: 2rem;
+  }
+`;
 
 export default Cousine;
