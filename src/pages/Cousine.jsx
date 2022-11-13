@@ -23,7 +23,7 @@ function Cousine() {
     console.log(params.type);
   }, [params.type]);
 
-  return <div></div>;
+  return <Grid></Grid>;
 }
 
 const Grid = styled.div`
@@ -35,7 +35,14 @@ const Grid = styled.div`
 const Card = styled.div`
   img{
     width: 100%
-    border-raduis: 2rem;
+    border-radius: 2rem;
+  }
+  a{
+    text-decoration: none;
+  }
+  h4{
+    text-align: center;
+    padding: 1rem;
   }
 `;
 
