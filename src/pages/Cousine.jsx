@@ -9,7 +9,7 @@ function Cousine() {
 
   const getCuisine = async (name) => {
     const data = await fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cousine=${name}`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`
     );
 
     const recipes = await data.json();
@@ -23,7 +23,18 @@ function Cousine() {
     console.log(params.type);
   }, [params.type]);
 
-  return <Grid></Grid>;
+  return (
+    <Grid>
+      {cousine.map((item) => {
+        return (
+          <Card key={item.id}>
+            <img src={item.image} />
+            <h4>{item.title}</h4>
+          </Card>
+        );
+      })}
+    </Grid>
+  );
 }
 
 const Grid = styled.div`
