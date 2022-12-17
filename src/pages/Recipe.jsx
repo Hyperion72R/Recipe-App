@@ -8,7 +8,23 @@ import React from "react";
 function Recipe() {
   let params = useParams();
 
-  return <div>{params.name}</div>;
+  const [details, setDetails] = useState({});
+
+  const FetchDetails = async () => {
+    const data = await fetch(
+      `https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`
+    );
+
+    const detailData = await data.json();
+
+    setDetails(detailData);
+  };
+
+  useEffect(() => {
+    FetchDetails();
+  }, [params.name]);
+
+  return <div>{details.title}</div>;
 }
 
 export default Recipe;

@@ -30,7 +30,7 @@ function Searched() {
       {searchedRecipes.map((item) => {
         return (
           <Card key={item.id}>
-            <NavLink to={`/recipe/${item.title}`}>
+            <NavLink to={`/recipe/${item.id}`}>
               <img src={item.image} alt={item.title} />
               <h4>{item.title}</h4>
             </NavLink>
