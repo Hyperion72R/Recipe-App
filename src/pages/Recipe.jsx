@@ -22,6 +22,12 @@ function Recipe() {
     console.log(detailData);
   };
 
+  const [showData, setShowData] = useState(false);
+
+  const handleClick = (x) => {
+    setShowData(x);
+  };
+
   useEffect(() => {
     FetchDetails();
   }, [params.name]);
@@ -35,19 +41,32 @@ function Recipe() {
       <Info>
         <Button
           className={activeTab === "instructions" ? "active" : ""}
-          onClick={() => setActiveTab("instructions")}
+          onClick={() => {
+            setActiveTab("instructions");
+            handleClick(false);
+          }}
         >
           Instructions
         </Button>
         <Button
           className={activeTab === "ingredients" ? "active" : ""}
-          onClick={() => setActiveTab("ingredients")}
+          onClick={() => {
+            setActiveTab("ingredients");
+            handleClick(true);
+          }}
         >
           Ingredients
         </Button>
         <div>
           <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
         </div>
+        {showData &&
+          details.extendedIngredients.map((ingredient) => (
+            <li key={ingredient.id}>{ingredient.original}</li>
+          ))}
+        {!showData && (
+          <h3 dangerouslySetInnerHTML={{ __html: details.instructions }}></h3>
+        )}
       </Info>
     </DetailWrapper>
   );
