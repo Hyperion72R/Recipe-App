@@ -22,12 +22,6 @@ function Recipe() {
     console.log(detailData);
   };
 
-  const [showData, setShowData] = useState(false);
-
-  const handleClick = (x) => {
-    setShowData(x);
-  };
-
   useEffect(() => {
     FetchDetails();
   }, [params.name]);
@@ -43,7 +37,6 @@ function Recipe() {
           className={activeTab === "instructions" ? "active" : ""}
           onClick={() => {
             setActiveTab("instructions");
-            handleClick(false);
           }}
         >
           Instructions
@@ -52,20 +45,23 @@ function Recipe() {
           className={activeTab === "ingredients" ? "active" : ""}
           onClick={() => {
             setActiveTab("ingredients");
-            handleClick(true);
           }}
         >
           Ingredients
         </Button>
-        <div>
-          <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
-        </div>
-        {showData &&
-          details.extendedIngredients.map((ingredient) => (
-            <li key={ingredient.id}>{ingredient.original}</li>
-          ))}
-        {!showData && (
-          <h3 dangerouslySetInnerHTML={{ __html: details.instructions }}></h3>
+        {activeTab === "instructions" && (
+          <div>
+            <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
+            <h3 dangerouslySetInnerHTML={{ __html: details.instructions }}></h3>
+          </div>
+        )}
+
+        {activeTab === "ingredients" && (
+          <ul>
+            {details.extendedIngredients.map((ingredient) => (
+              <li key={ingredient.id}>{ingredient.original}</li>
+            ))}
+          </ul>
         )}
       </Info>
     </DetailWrapper>
